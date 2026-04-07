@@ -23,7 +23,7 @@ export const Hero = () => {
         <div className="absolute inset-0 bg-background/55" />
       </ParallaxImage>
 
-      <ParallaxContent className="flex min-h-screen items-center justify-center px-4">
+      <ParallaxContent className="flex min-h-screen items-center justify-center px-4 pt-60">
         <div className="flex max-w-3xl flex-col items-center gap-6 text-center">
           <h1 className="text-4xl font-extrabold leading-tight text-white md:text-5xl lg:text-6xl 2xl:text-7xl">
             {BUSINESS.tagline}
