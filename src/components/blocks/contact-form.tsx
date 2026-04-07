@@ -1,7 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { z } from "zod";
 import { useState } from "react";
 import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
@@ -40,8 +40,7 @@ export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   const form = useForm<ContactFormData>({
-    // @ts-expect-error — @hookform/resolvers type definitions not yet aligned with zod 4.3.x, works at runtime
-    resolver: zodResolver(contactSchema),
+    resolver: standardSchemaResolver(contactSchema),
     defaultValues: {
       firstName: "",
       lastName: "",
