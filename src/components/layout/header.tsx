@@ -13,7 +13,7 @@ export const Header = () => {
 
     useEffect(() => {
         if (!isHome) return;
-        const handleScroll = () => setScrolled(window.scrollY > 0);
+        const handleScroll = () => setScrolled(window.scrollY > 10);
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, [isHome]);
@@ -26,8 +26,8 @@ export const Header = () => {
             <Logo className={cn(
                 "absolute left-1/2 -translate-x-1/2 overflow-hidden transition-all duration-500 ease-in-out",
                 active
-                    ? "top-2 w-35 aspect-square rounded-full bg-background border-b-4 border-b-primary"
-                    : "top-5 w-100 aspect-square rounded-none"
+                    ? "top-2 w-25 lg:w-35 aspect-square rounded-full bg-background border-b-4 border-b-primary"
+                    : "top-5 w-85 lg:w-100 2xl:w-150 aspect-square rounded-none"
             )}/>
         </header>
     );
