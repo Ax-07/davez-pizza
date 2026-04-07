@@ -10,13 +10,13 @@ export const Footer = () => {
             <div className="max-w-6xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
                 {/* Identité */}
                 <div className="flex flex-col gap-4">
-                    <Logo />
+                    <Logo size={"compact"}/>
                     <p className="text-sm text-muted-foreground leading-relaxed">
                         Pizzeria artisanale. Pâte maison, produits frais,<br />
                         cuite au feu de bois.
                     </p>
                     <div className="flex gap-3">
-                        <a
+                        <Link
                             href={BUSINESS.social.instagram}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -24,8 +24,8 @@ export const Footer = () => {
                             className="text-muted-foreground hover:text-foreground transition-colors"
                         >
                             <Instagram className="size-5" />
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                             href={BUSINESS.social.facebook}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -33,12 +33,12 @@ export const Footer = () => {
                             className="text-muted-foreground hover:text-foreground transition-colors"
                         >
                             <Facebook className="size-5" />
-                        </a>
+                        </Link>
                     </div>
                 </div>
 
                 {/* Navigation */}
-                <div>
+                {/* <div>
                     <h3 className="font-semibold mb-4">Navigation</h3>
                     <ul className="space-y-2">
                         {Object.values(navigation_pages).map((page) => (
@@ -52,7 +52,7 @@ export const Footer = () => {
                             </li>
                         ))}
                     </ul>
-                </div>
+                </div> */}
 
                 {/* Contact */}
                 <div>
