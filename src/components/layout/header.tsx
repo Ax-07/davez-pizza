@@ -23,12 +23,14 @@ export const Header = () => {
     return (
         <header className={`fixed top-0 z-50 flex items-center justify-end w-full py-4 px-4 md:px-8 transition-all duration-1000 ${active ? "backdrop-blur-lg bg-background border-b-2 border-b-primary border-border/40" : "bg-transparent border-b border-transparent"}`}>
             <Navigation/>
-            <Logo className={cn(
-                "absolute left-1/2 -translate-x-1/2 overflow-hidden transition-all duration-500 ease-in-out",
-                active
-                    ? "top-2 w-25 lg:w-35 aspect-square rounded-full bg-background border-b-4 border-b-primary"
-                    : "top-5 w-85 lg:w-100 2xl:w-150 aspect-square rounded-none"
-            )}/>
+            <Logo
+                size={active ? 'compact' : 'default'}
+                border={active ? 'bottom' : 'none'}
+                className={cn(
+                    "absolute left-1/2 -translate-x-1/2",
+                    active ? "top-2" : "top-5"
+                )}
+            />
         </header>
     );
 };
