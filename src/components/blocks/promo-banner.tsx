@@ -14,6 +14,7 @@ export function PromoBanner() {
           alt="Commandez Davez Pizza en livraison"
           fill
           className="object-cover"
+          loading="eager"
         />
         <div className="absolute inset-0 bg-background/60" />
       </ParallaxImage>
