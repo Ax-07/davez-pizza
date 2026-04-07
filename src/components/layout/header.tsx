@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Logo } from "@/components/ui/logo";
 import { Navigation } from "@/components/navigation";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "../ui/theme-toggle";
 
 export const Header = () => {
     const pathname = usePathname();
@@ -22,6 +23,7 @@ export const Header = () => {
 
     return (
         <header className={`fixed top-0 z-50 flex items-center justify-end w-full py-4 px-4 md:px-8 transition-all duration-1000 ${active ? "backdrop-blur-lg bg-background border-b-2 border-b-primary border-border/40" : "bg-transparent border-b border-transparent"}`}>
+            <ThemeToggle />
             <Navigation/>
             <Logo
                 size={active ? 'compact' : 'default'}

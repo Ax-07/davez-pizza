@@ -29,7 +29,7 @@ const robotoSerif = Roboto_Serif({
 
 export const metadata: Metadata = {
   title: {
-    default: "Davez Pizza — Pizzeria artisanale à Bordeaux",
+    default: "Davez Pizza — Pizzeria artisanale à Davézieux",
     template: "%s | Davez Pizza",
   },
   description:
@@ -49,7 +49,7 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} ${italianno.variable} ${robotoSerif.variable} antialiased font-roboto-serif`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <Header />
           {children}
           <Footer />
