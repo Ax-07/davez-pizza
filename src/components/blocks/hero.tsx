@@ -23,18 +23,27 @@ export const Hero = () => {
         <div className="absolute inset-0 bg-background/55" />
       </ParallaxImage>
 
-      <ParallaxContent className="flex min-h-screen items-center justify-center px-4 pt-60">
-        <div className="flex max-w-3xl flex-col items-center gap-6 text-center">
-          <h1 className="text-4xl font-extrabold leading-tight text-white md:text-5xl lg:text-6xl 2xl:text-7xl">
-            {BUSINESS.tagline}
+      <ParallaxContent className="flex min-h-screen items-center justify-center px-4 pt-70">
+        <div className="flex max-w-3xl flex-col items-center text-center">
+          <p className="text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl font-italianno 2xl:[-webkit-text-stroke:1px_white]">
+            Sur place ou à emporter
+          </p>
+          <h1 className="text-4xl font-extrabold text-yellow-500 md:text-5xl lg:text-6xl 2xl:text-7xl leading-tight">
+            {/* {BUSINESS.tagline} */}
+            Ouvert 7/7
           </h1>
 
-          <p className="max-w-xl text-lg leading-relaxed text-white/85 md:text-xl">
-            {BUSINESS.description}
+          <p className="max-w-xl text-2xl text-white/85 md:text-3xl">
+            {/* {BUSINESS.description} */}
+            Midi et soir *
+          </p>
+          <p className="max-w-xl text-2xl leading-relaxed text-white/50 md:text-xl mb-6">
+            {/* {BUSINESS.description} */}
+            * Fermé les lundi et dimanche midi
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
-            <a
+            {/* <a
               href={BUSINESS.deliveryUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -44,7 +53,7 @@ export const Hero = () => {
               )}
             >
               Se faire livrer
-            </a>
+            </a> */}
 
             <Button size="lg" asChild>
               <Link href="/menu">Voir la carte</Link>
