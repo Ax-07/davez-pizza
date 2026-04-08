@@ -36,7 +36,25 @@ export default function MenuPage() {
       <section className="py-16 px-4">
         <div className="max-w-5xl mx-auto">
           <Tabs defaultValue={menuCategories[0].id}>
-            <div className="sticky top-17.5 lg:top-23.5 z-40 flex justify-between bg-background/70 backdrop-blur-md max-md:pt-8 py-3 -mx-4 px-4 mb-10 max-md:h-35">
+            <div className="sticky top-17.5 lg:top-23.5 z-40 flex flex-col gap-3 items-center lg:justify-between bg-background/70 backdrop-blur-md py-0 -mx-4 px-4 mb-1 max-md:h-23 border-b">
+              <TabsList className="flex w-full h-auto gap-24 justify-between" variant={"line"}>
+                {menuCategories.slice(0, 2).map((category) => (
+                  <TabsTrigger key={category.id} value={category.id} className="gap-1.5 px-0">
+                    {/* <span aria-hidden>{category.emoji}</span> */}
+                    {category.name}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+              <TabsList className="flex flex-wrap h-auto gap-1 justify-start" variant={"line"}>
+                {menuCategories.slice(2).map((category) => (
+                  <TabsTrigger key={category.id} value={category.id} className="gap-1.5">
+                    <span aria-hidden>{category.emoji}</span>
+                    {category.name}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+            </div>
+            {/* <div className="sticky top-17.5 lg:top-23.5 z-40 flex justify-between bg-background/70 backdrop-blur-md max-md:pt-8 py-3 -mx-4 px-4 mb-10 max-md:h-35">
               <TabsList className="flex flex-wrap h-auto gap-1 justify-start" variant={"line"}>
                 {menuCategories.slice(0, 2).map((category) => (
                   <TabsTrigger key={category.id} value={category.id} className="gap-1.5">
@@ -53,7 +71,7 @@ export default function MenuPage() {
                   </TabsTrigger>
                 ))}
               </TabsList>
-            </div>
+            </div> */}
 
             {menuCategories.map((category) => (
               <TabsContent key={category.id} value={category.id}>
