@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Italianno, Roboto_Serif } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
@@ -24,10 +24,16 @@ const italianno = Italianno({
 const robotoSerif = Roboto_Serif({
   variable: "--font-roboto-serif",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["200", "400", "700"],
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://davezpizza.fr"),
   title: {
     default: "Davez Pizza — Pizzeria artisanale à Davézieux",
     template: "%s | Davez Pizza",
@@ -38,6 +44,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_FR",
     siteName: "Davez Pizza",
+    images: [
+      {
+        url: "/salle davez pizza.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Davez Pizza — Pizzeria artisanale à Davézieux",
+      },
+    ],
   },
 };
 
@@ -48,7 +62,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} ${italianno.variable} ${robotoSerif.variable} antialiased font-roboto-serif`}>
+        <body className={`${geistSans.variable} ${geistMono.variable} ${italianno.variable} ${robotoSerif.variable} antialiased font-roboto-serif`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <Header />
           {children}
