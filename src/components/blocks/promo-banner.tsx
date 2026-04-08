@@ -7,14 +7,14 @@ import { cn } from "@/lib/utils";
 
 export function PromoBanner() {
   return (
-    <Parallax effect="clip-scroll" size="full" className="w-full">
-      <ParallaxImage scale="none">
+    <Parallax size="full" className="w-full">
+      <ParallaxImage>
         <Image
           src="/salle davez pizza2.jpg"
           alt="Commandez Davez Pizza en livraison"
           fill
           className="object-cover"
-          loading="eager"
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-background/60" />
       </ParallaxImage>
