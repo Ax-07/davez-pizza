@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { MapPin, Phone, Clock, ExternalLink, MessageCircle } from "lucide-react";
@@ -31,12 +34,12 @@ function getOpenStatus(schedule: typeof SCHEDULE[keyof typeof SCHEDULE]): { open
   return { open: false, label: "Fermé" };
 }
 
-function SlotPill({ slot, label }: { slot: DaySlot; label: string }) {
-  if ("closed" in slot) return null;
+function SlotCell({ slot }: { slot: DaySlot }) {
+  if ("closed" in slot)
+    return <span className="text-muted-foreground/50 italic text-xs">—</span>;
   return (
-    <span className="inline-flex flex-col items-end">
-      <span className="text-[10px] uppercase tracking-wide text-muted-foreground/60">{label}</span>
-      <span className="text-sm font-medium tabular-nums">{slot.open} – {slot.close}</span>
+    <span className="tabular-nums text-sm font-extralight whitespace-nowrap">
+      {slot.open}&nbsp;–&nbsp;{slot.close}
     </span>
   );
 }
@@ -47,12 +50,18 @@ export function HoursAddress() {
   const seasonLabel = season === "summer"
     ? `Été (${SUMMER_PERIOD.start.replace("-", "/")} – ${SUMMER_PERIOD.end.replace("-", "/")})`
     : "Hiver";
-  const status = getOpenStatus(hours);
-  const todayName = DAY_NAMES[new Date().getDay()];
+
+  const [status, setStatus] = useState<{ open: boolean; label: string }>({ open: false, label: "Vérification…" });
+  const [todayName, setTodayName] = useState("");
+
+  useEffect(() => {
+    setStatus(getOpenStatus(hours));
+    setTodayName(DAY_NAMES[new Date().getDay()]);
+  }, [hours]);
 
   return (
-    <Parallax effect="clip-scroll" size="full" className="w-full">
-      <ParallaxImage scale="none">
+    <Parallax size="full" className="w-full">
+      <ParallaxImage>
         <Image
           src={devantureDavezPizza}
           alt="Devanture Davez Pizza"
@@ -88,7 +97,7 @@ export function HoursAddress() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-5xl items-start">
 
           {/* Colonne gauche : horaires + contact */}
-          <div className="rounded-2xl border bg-background/80 backdrop-blur-md p-6 md:p-8 flex flex-col gap-8 shadow-lg">
+          <div className="h-full rounded-2xl border bg-background/80 backdrop-blur-md p-6 md:p-8 flex flex-col gap-8 shadow-lg">
 
             {/* Horaires */}
             <div>
@@ -102,40 +111,44 @@ export function HoursAddress() {
                 </span>
               </div>
 
-              <ul className="space-y-1">
-                {hours.map((h) => {
-                  const morningClosed = "closed" in h.morning;
-                  const eveningClosed = "closed" in h.evening;
-                  const allClosed = morningClosed && eveningClosed;
-                  const isToday = h.day === todayName;
-                  return (
-                    <li
-                      key={h.day}
-                      className={cn(
-                        "grid grid-cols-[1fr_auto] gap-4 px-3 py-2.5 rounded-lg border-b border-border/50 last:border-0 transition-colors",
-                        isToday && "bg-primary/8 border-b-primary/20"
-                      )}
-                    >
-                      <span className={cn(
-                        "text-sm font-medium",
-                        allClosed && "text-muted-foreground",
-                        isToday && "text-primary font-semibold"
-                      )}>
-                        {h.day}
-                        {isToday && <span className="ml-2 text-[10px] uppercase tracking-wider opacity-70">Aujourd&apos;hui</span>}
-                      </span>
-                      {allClosed ? (
-                        <span className="text-muted-foreground text-xs italic">Fermé</span>
-                      ) : (
-                        <div className="flex gap-4 text-right">
-                          <SlotPill slot={h.morning} label="Midi" />
-                          <SlotPill slot={h.evening} label="Soir" />
-                        </div>
-                      )}
-                    </li>
-                  );
-                })}
-              </ul>
+              <table className="w-full text-sm border-collapse">
+                <thead>
+                  <tr className="text-xs uppercase tracking-wide text-muted-foreground/60">
+                    <th className="text-left font-medium pb-2 pl-3 w-[40%]">Jour</th>
+                    <th className="text-center font-medium pb-2 w-[30%]">Midi</th>
+                    <th className="text-center font-medium pb-2 pr-3 w-[30%]">Soir</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {hours.map((h) => {
+                    const allClosed = "closed" in h.morning && "closed" in h.evening;
+                    const isToday = h.day === todayName;
+                    return (
+                      <tr
+                        key={h.day}
+                        className={cn(
+                          "border-b border-border/50 last:border-0 transition-colors",
+                          isToday && "bg-primary/8"
+                        )}
+                      >
+                        <td className={cn(
+                          "py-2.5 pl-3 font-medium",
+                          allClosed && "text-muted-foreground",
+                          isToday && "text-primary font-semibold"
+                        )}>
+                          {h.day}
+                        </td>
+                        <td className="py-2.5 text-center">
+                          <SlotCell slot={h.morning} />
+                        </td>
+                        <td className="py-2.5 pr-3 text-center">
+                          <SlotCell slot={h.evening} />
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
 
             <Separator />
@@ -165,7 +178,7 @@ export function HoursAddress() {
           </div>
 
           {/* Colonne droite : carte + adresse */}
-          <div className="rounded-2xl border bg-background/80 backdrop-blur-md p-6 md:p-8 flex flex-col gap-6 shadow-lg">
+          <div className="h-full rounded-2xl border bg-background/80 backdrop-blur-md p-6 md:p-8 flex flex-col gap-6 shadow-lg">
             <div className="flex items-center gap-2.5">
               <MapPin className="size-5 text-primary" />
               <h3 className="text-xl font-semibold">Nous trouver</h3>
