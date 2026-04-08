@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic";
-
 import { Hero } from "@/components/blocks/hero";
 // import { Specialties } from "@/components/blocks/specialties";
 // import { PromoBanner } from "@/components/blocks/promo-banner";
