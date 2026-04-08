@@ -1,15 +1,11 @@
-"use client";
-
-import { useIsMobile } from "@/hooks/use-mobile"
 import { MobileNav } from "./mobile-nav"
 import { DesktopNav } from "./desktop-nav"
 
 export const Navigation = () => {
-    const isMobile = useIsMobile()
-
     return (
         <>
-            {isMobile === undefined ? null : isMobile ? <MobileNav /> : <DesktopNav />}
+            <span className="md:hidden"><MobileNav /></span>
+            <span className="hidden md:flex"><DesktopNav /></span>
         </>
     )
 }
