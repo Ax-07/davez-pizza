@@ -3,9 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Separator } from "@/components/ui/separator";
 import React from "react";
-import imagePateFaiteMaison from "@/assets/skyler-ewing-pate_a_pizza-unsplash.jpg";
-import legumePourPizza from "@/assets/Ingrédients_pour_pizza.png";
-import pizzaDegoulinante from "@/assets/pablo-pacheco-pizza-degoulinante-unsplash.jpg";
+import imagePateFaiteMaison from "@/assets/skyler-ewing-pate_a_pizza-unsplash-w520.png";
+import legumePourPizza from "@/assets/Ingrédients_pour_pizza-w520.png";
+import pizzaDegoulinante from "@/assets/pablo-pacheco-pizza-degoulinante-unsplash-w520.png";
 import Image from "next/image";
 
 // --------------------
@@ -132,7 +132,7 @@ export const About: React.FC<React.ComponentProps<"section">> = (props) => {
                   initialY={initialY}
                   delay={index * 100}
                 >
-                  <Image src={image} alt={title} className="absolute z-10 size-full object-cover" loading="lazy" />
+                  <Image src={image} alt={title} className="absolute z-10 size-full object-cover" loading="lazy" width={520} height={520} />
                   <div className="relative z-20 bg-background/70 p-6 rounded-lg w-full h-full flex flex-col items-center justify-center gap-4">
                     <h2 className="text-xl font-semibold leading-snug">{title}</h2>
                     <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
