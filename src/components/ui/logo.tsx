@@ -1,8 +1,11 @@
+"use client";
+
 import { cva, type VariantProps } from 'class-variance-authority';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { usePathname } from 'next/navigation';
 
 const logoVariants = cva(
     'flex items-center justify-center p-2 aspect-square transition-all duration-500 ease-in-out',
@@ -29,9 +32,18 @@ const logoVariants = cva(
 type LogoProps = VariantProps<typeof logoVariants> & Omit<React.ComponentProps<'div'>, 'size'>;
 
 export const Logo: React.FC<LogoProps> = ({ size, border, className, ...props }) => {
+    const pathname = usePathname();
+
+    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        if (pathname === '/') {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    };
+
     return (
         <div className={cn('transition-all duration-500 ease-in-out', className)} {...props}>
-            <Link href={'/'} className={logoVariants({ size, border })}>
+            <Link href={'/'} className={logoVariants({ size, border })} onClick={handleClick}>
                 <Image src="/logo.png" alt="Davez Pizza Logo" width={640} height={450} className='w-full object-cover'/>
             </Link>
         </div>
