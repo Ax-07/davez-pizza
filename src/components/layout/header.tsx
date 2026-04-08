@@ -6,6 +6,7 @@ import { Logo } from "@/components/ui/logo";
 import { Navigation } from "@/components/navigation";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "../ui/theme-toggle";
+import { LazyMotion, domAnimation, m } from "motion/react";
 
 export const Header = () => {
     const pathname = usePathname();
@@ -15,7 +16,7 @@ export const Header = () => {
     useEffect(() => {
         if (!isHome) return;
         const handleScroll = () => setScrolled(window.scrollY > 10);
-        handleScroll(); // lit la position au montage
+        handleScroll();
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, [isHome]);
@@ -26,14 +27,22 @@ export const Header = () => {
         <header className={`fixed top-0 z-50 flex items-center justify-end w-full py-4 px-4 md:px-8 transition-all duration-1000 ${active ? "backdrop-blur-lg bg-background border-b-2 border-b-primary border-border/40" : "bg-transparent border-b border-transparent"}`}>
             <ThemeToggle />
             <Navigation/>
-            <Logo
-                size={active ? 'compact' : 'default'}
-                border={active ? 'bottom' : 'none'}
-                className={cn(
-                    "absolute left-1/2 -translate-x-1/2",
-                    active ? "top-2" : "top-5"
-                )}
-            />
+            <LazyMotion features={domAnimation}>
+                <m.div
+                    className={cn(
+                        "absolute left-1/2 -translate-x-1/2",
+                        active ? "top-2" : "top-5"
+                    )}
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+                >
+                    <Logo
+                        size={active ? 'compact' : 'default'}
+                        border={active ? 'bottom' : 'none'}
+                    />
+                </m.div>
+            </LazyMotion>
         </header>
     );
 };
