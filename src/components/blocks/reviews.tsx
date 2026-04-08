@@ -1,4 +1,7 @@
+"use client";
+
 import { Star } from "lucide-react";
+import { LazyMotion, domAnimation, m } from "motion/react";
 
 const REVIEWS = [
   {
@@ -53,12 +56,17 @@ export function Reviews() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {REVIEWS.map((review) => (
-            <article
-              key={review.id}
-              className="rounded-2xl border bg-card p-6 flex flex-col gap-4 shadow-sm"
-            >
+        <LazyMotion features={domAnimation}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {REVIEWS.map((review, index) => (
+              <m.article
+                key={review.id}
+                className="rounded-2xl border bg-card p-6 flex flex-col gap-4 shadow-sm"
+                initial={{ opacity: 0, y: 32 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1], delay: index * 0.1 }}
+              >
               <div className="flex items-start justify-between gap-2">
                 <div>
                   <p className="font-semibold">{review.author}</p>
@@ -72,9 +80,10 @@ export function Reviews() {
               <blockquote className="text-sm text-muted-foreground leading-relaxed italic">
                 &ldquo;{review.text}&rdquo;
               </blockquote>
-            </article>
-          ))}
-        </div>
+              </m.article>
+            ))}
+          </div>
+        </LazyMotion>
       </div>
     </section>
   );
