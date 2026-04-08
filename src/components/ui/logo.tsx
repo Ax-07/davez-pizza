@@ -11,6 +11,7 @@ const logoVariants = cva(
             size: {
                 default: 'w-85 lg:w-100 2xl:w-130 rounded-none',
                 compact: 'w-25 lg:w-35 rounded-full overflow-hidden bg-background',
+                medium: 'w-35 lg:w-40 rounded-lg',
             },
             border: {
                 none: '',
