@@ -1,11 +1,10 @@
 "use client";
 
-import { Leaf, Flame, Users2 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import React from "react";
 import imagePateFaiteMaison from "@/assets/skyler-ewing-pate_a_pizza-unsplash.jpg";
 import legumePourPizza from "@/assets/Ingrédients_pour_pizza.png";
-import pizzaDegoulinante from '@/assets/pablo-pacheco-pizza-degoulinante-unsplash.jpg'
+import pizzaDegoulinante from "@/assets/pablo-pacheco-pizza-degoulinante-unsplash.jpg";
 import Image from "next/image";
 import { LazyMotion, domAnimation, m } from "motion/react";
 
@@ -22,24 +21,19 @@ const content = {
 
   values: [
     {
-      icon: Users2,
       title: "Pâte faite maison",
       description:
         "Une pâte préparée sur place, avec une fermentation lente pour développer des saveurs authentiques et une texture parfaite.",
       image: imagePateFaiteMaison,
     },
     {
-      icon: Leaf,
       title: "Des produits choisis avec soin",
-      description:
-        "Des ingrédients sélectionnés pour vous proposer des pizzas simples, généreuses et pleines de goût.",
+      description: "Des ingrédients sélectionnés pour vous proposer des pizzas simples, généreuses et pleines de goût.",
       image: legumePourPizza,
     },
     {
-      icon: Flame,
       title: "Une préparation maîtrisée",
-      description:
-        "Une attention portée à chaque étape pour vous offrir des pizzas régulières et bien exécutées.",
+      description: "Une attention portée à chaque étape pour vous offrir des pizzas régulières et bien exécutées.",
       image: pizzaDegoulinante,
     },
   ],
@@ -69,31 +63,31 @@ export const About: React.FC<React.ComponentProps<"section">> = (props) => {
 
         {/* Valeurs */}
         <div className="overflow-hidden">
-        <LazyMotion features={domAnimation}>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {content.values.map(({ title, description, image }, index) => {
-            const initialX = index === 0 ? -80 : index === 2 ? 80 : 0;
-            const initialY = index === 1 ? 80 : 0;
+          <LazyMotion features={domAnimation}>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {content.values.map(({ title, description, image }, index) => {
+                const initialX = index === 0 ? -80 : index === 2 ? 80 : 0;
+                const initialY = index === 1 ? 80 : 0;
 
-            return (
-              <m.div
-                key={index}
-                className="relative flex flex-col items-center text-center gap-4 rounded-2xl border bg-card h-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden"
-                initial={{ opacity: 0, x: initialX, y: initialY }}
-                whileInView={{ opacity: 1, x: 0, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
-              >
-                <Image src={image} alt={title} className="absolute z-10 size-full object-cover" loading="lazy"/>
-                <div className="relative z-20 bg-background/70 p-6 rounded-lg w-full h-full flex flex-col items-center justify-center gap-4">
-                  <h2 className="text-xl font-semibold leading-snug">{title}</h2>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
-                </div>
-              </m.div>
-            );
-          })}
-        </div>
-        </LazyMotion>
+                return (
+                  <m.div
+                    key={index}
+                    className="relative flex flex-col items-center text-center gap-4 rounded-2xl border bg-card h-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden"
+                    initial={{ opacity: 0, x: initialX, y: initialY }}
+                    whileInView={{ opacity: 1, x: 0, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
+                  >
+                    <Image src={image} alt={title} className="absolute z-10 size-full object-cover" loading="lazy" />
+                    <div className="relative z-20 bg-background/70 p-6 rounded-lg w-full h-full flex flex-col items-center justify-center gap-4">
+                      <h2 className="text-xl font-semibold leading-snug">{title}</h2>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+                    </div>
+                  </m.div>
+                );
+              })}
+            </div>
+          </LazyMotion>
         </div>
       </div>
     </section>
