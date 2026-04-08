@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useRef } from "react";
+import { createContext, useCallback, useContext, useLayoutEffect, useRef } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
@@ -61,7 +61,7 @@ const Parallax = ({ className, children, size, ...props }: ParallaxProps) => {
         imgsRef.current.delete(el);
     }, []);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const el = sectionRef.current;
         if (!el) return;
 
