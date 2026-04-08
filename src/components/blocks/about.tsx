@@ -1,12 +1,68 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { Separator } from "@/components/ui/separator";
 import React from "react";
 import imagePateFaiteMaison from "@/assets/skyler-ewing-pate_a_pizza-unsplash.jpg";
 import legumePourPizza from "@/assets/Ingrédients_pour_pizza.png";
 import pizzaDegoulinante from "@/assets/pablo-pacheco-pizza-degoulinante-unsplash.jpg";
 import Image from "next/image";
-import { LazyMotion, domAnimation, m } from "motion/react";
+
+// --------------------
+// AnimateInView
+// --------------------
+
+type AnimateInViewProps = {
+  children: React.ReactNode;
+  className?: string;
+  initialX?: number;
+  initialY?: number;
+  delay?: number;
+};
+
+function AnimateInView({ children, className, initialX = 0, initialY = 0, delay = 0 }: AnimateInViewProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const reducedRef = useRef(false);
+  const [state, setState] = useState<"hidden" | "animating" | "done">("hidden");
+
+  useEffect(() => {
+    reducedRef.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const el = ref.current;
+    if (!el) return;
+
+    const threshold = reducedRef.current ? 0 : 0.2;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setState(reducedRef.current ? "done" : "animating");
+          observer.disconnect();
+        }
+      },
+      { threshold }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        opacity: state !== "hidden" ? 1 : 0,
+        transform: state !== "hidden" ? "translate(0,0)" : `translate(${initialX}px,${initialY}px)`,
+        transition: state === "animating"
+          ? `opacity 0.6s ease-out ${delay}ms, transform 0.6s ease-out ${delay}ms`
+          : undefined,
+        willChange: state === "hidden" ? "opacity, transform" : undefined,
+        contain: "layout style paint",
+      }}
+      onTransitionEnd={() => setState("done")}
+    >
+      {children}
+    </div>
+  );
+}
 
 const content = {
   tagline: "À partir du 1er mai 2026",
@@ -63,31 +119,28 @@ export const About: React.FC<React.ComponentProps<"section">> = (props) => {
 
         {/* Valeurs */}
         <div className="overflow-hidden">
-          <LazyMotion features={domAnimation}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {content.values.map(({ title, description, image }, index) => {
-                const initialX = index === 0 ? -80 : index === 2 ? 80 : 0;
-                const initialY = index === 1 ? 80 : 0;
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {content.values.map(({ title, description, image }, index) => {
+              const initialX = index === 0 ? -80 : index === 2 ? 80 : 0;
+              const initialY = index === 1 ? 80 : 0;
 
-                return (
-                  <m.div
-                    key={index}
-                    className="relative flex flex-col items-center text-center gap-4 rounded-2xl border bg-card h-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden"
-                    initial={{ opacity: 0, x: initialX, y: initialY }}
-                    whileInView={{ opacity: 1, x: 0, y: 0 }}
-                    viewport={{ once: true, amount: 0.2 }}
-                    transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
-                  >
-                    <Image src={image} alt={title} className="absolute z-10 size-full object-cover" loading="lazy" />
-                    <div className="relative z-20 bg-background/70 p-6 rounded-lg w-full h-full flex flex-col items-center justify-center gap-4">
-                      <h2 className="text-xl font-semibold leading-snug">{title}</h2>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
-                    </div>
-                  </m.div>
-                );
-              })}
-            </div>
-          </LazyMotion>
+              return (
+                <AnimateInView
+                  key={index}
+                  className="relative flex flex-col items-center text-center gap-4 rounded-2xl border bg-card h-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden"
+                  initialX={initialX}
+                  initialY={initialY}
+                  delay={index * 100}
+                >
+                  <Image src={image} alt={title} className="absolute z-10 size-full object-cover" loading="lazy" />
+                  <div className="relative z-20 bg-background/70 p-6 rounded-lg w-full h-full flex flex-col items-center justify-center gap-4">
+                    <h2 className="text-xl font-semibold leading-snug">{title}</h2>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+                  </div>
+                </AnimateInView>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
