@@ -15,6 +15,7 @@ export const Header = () => {
     useEffect(() => {
         if (!isHome) return;
         const handleScroll = () => setScrolled(window.scrollY > 10);
+        handleScroll(); // lit la position au montage
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, [isHome]);
