@@ -1,7 +1,19 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Parallax, ParallaxImage, ParallaxContent } from "@/components/ui/parallax";
+import { LazyMotion, domAnimation, m, type Variants } from "motion/react";
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as const, delay: i * 0.15 },
+  }),
+};
 
 export const Hero = () => {
   return (
@@ -22,30 +34,59 @@ export const Hero = () => {
       </ParallaxImage>
 
       <ParallaxContent className="flex min-h-screen items-center justify-center px-4 pt-70">
-        <div className="flex max-w-3xl flex-col items-center text-center">
-          <p className="text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl font-italianno 2xl:[-webkit-text-stroke:1px_white]">
-            Sur place ou à emporter
-          </p>
-          <h1 className="text-4xl font-extrabold text-yellow-500 md:text-5xl lg:text-6xl 2xl:text-7xl leading-tight">
-            {/* {BUSINESS.tagline} */}
-            Ouvert 7/7
-          </h1>
+        <LazyMotion features={domAnimation}>
+          <div className="flex max-w-3xl flex-col items-center text-center">
+            <m.p
+              className="text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl font-italianno 2xl:[-webkit-text-stroke:1px_white]"
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              custom={0}
+            >
+              Sur place ou à emporter
+            </m.p>
+            <m.h1
+              className="text-4xl font-extrabold text-yellow-500 md:text-5xl lg:text-6xl 2xl:text-7xl leading-tight"
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              custom={1}
+            >
+              Ouvert 7/7
+            </m.h1>
 
-          <p className="max-w-xl text-2xl text-white/85 md:text-3xl">
-            {/* {BUSINESS.description} */}
-            Midi et soir *
-          </p>
-          <p className="max-w-xl text-2xl leading-relaxed text-white/50 md:text-xl mb-6">
-            {/* {BUSINESS.description} */}
-            * Fermé les lundi et dimanche midi
-          </p>
+            <m.p
+              className="max-w-xl text-2xl text-white/85 md:text-3xl"
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              custom={2}
+            >
+              Midi et soir *
+            </m.p>
+            <m.p
+              className="max-w-xl text-2xl leading-relaxed text-white/50 md:text-xl mb-6"
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              custom={3}
+            >
+              * Fermé les lundi et dimanche midi
+            </m.p>
 
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg" asChild>
-              <Link href="/menu">Voir la carte</Link>
-            </Button>
+            <m.div
+              className="flex flex-wrap justify-center gap-4"
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              custom={4}
+            >
+              <Button size="lg" asChild>
+                <Link href="/menu">Voir la carte</Link>
+              </Button>
+            </m.div>
           </div>
-        </div>
+        </LazyMotion>
       </ParallaxContent>
     </Parallax>
   );
