@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { MapPin, Phone, Clock, ExternalLink, MessageCircle } from "lucide-react";
@@ -51,13 +51,10 @@ export function HoursAddress() {
     ? `Été (${SUMMER_PERIOD.start.replace("-", "/")} – ${SUMMER_PERIOD.end.replace("-", "/")})`
     : "Hiver";
 
-  const [status, setStatus] = useState<{ open: boolean; label: string }>({ open: false, label: "Vérification…" });
-  const [todayName, setTodayName] = useState("");
-
-  useEffect(() => {
-    setStatus(getOpenStatus(hours));
-    setTodayName(DAY_NAMES[new Date().getDay()]);
-  }, [hours]);
+  const [status, todayName] = useMemo(() => [
+    getOpenStatus(hours),
+    DAY_NAMES[new Date().getDay()],
+  ], [hours]);
 
   return (
     <Parallax size="full" className="w-full">
