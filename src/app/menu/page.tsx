@@ -36,7 +36,7 @@ export default function MenuPage() {
       <section className="py-16 px-4">
         <div className="max-w-5xl mx-auto">
           <Tabs defaultValue={menuCategories[0].id}>
-            <div className="sticky top-23.5 z-40 flex justify-between bg-background/70 backdrop-blur-md py-3 -mx-4 px-4 mb-10">
+            <div className="sticky top-17.5 lg:top-23.5 z-40 flex justify-between bg-background/70 backdrop-blur-md max-md:pt-8 py-3 -mx-4 px-4 mb-10 max-md:h-35">
               <TabsList className="flex flex-wrap h-auto gap-1 justify-start" variant={"line"}>
                 {menuCategories.slice(0, 2).map((category) => (
                   <TabsTrigger key={category.id} value={category.id} className="gap-1.5">
