@@ -62,30 +62,3 @@ export const Footer = () => {
     </footer>
   );
 };
-
-{
-  /* Contact */
-}
-{
-  /* <div>
-                    <h3 className="font-semibold mb-4">Contact</h3>
-                    <address className="not-italic space-y-3">
-                        <div className="flex items-start gap-2 text-sm text-muted-foreground">
-                            <MapPin className="size-4 mt-0.5 shrink-0" />
-                            <span>
-                                {BUSINESS.address.street}<br />
-                                {BUSINESS.address.postalCode} {BUSINESS.address.city}
-                            </span>
-                        </div>
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <Phone className="size-4 shrink-0" />
-                            <a
-                                href={`tel:${BUSINESS.phone.replace(/\s/g, "")}`}
-                                className="hover:text-foreground transition-colors"
-                            >
-                                {BUSINESS.phone}
-                            </a>
-                        </div>
-                    </address>
-                </div> */
-}
