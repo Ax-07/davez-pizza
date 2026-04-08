@@ -1,23 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Parallax, ParallaxImage, ParallaxContent } from "@/components/ui/parallax";
-import { cn } from "@/lib/utils";
-import { BUSINESS } from "@/data/config";
 
 export const Hero = () => {
   return (
     <Parallax
-      effect="clip-scroll"
       size="full"
       className="w-full"
     >
-      <ParallaxImage scale="none">
+      <ParallaxImage>
         <Image
           src="/salle davez pizza.jpeg"
           alt="Salle du restaurant Davez Pizza"
           fill
           priority
+          sizes="100vw"
           className="object-cover"
         />
         <div className="absolute inset-0 bg-background/55" />
