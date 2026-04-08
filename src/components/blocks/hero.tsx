@@ -41,18 +41,6 @@ export const Hero = () => {
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
-            {/* <a
-              href={BUSINESS.deliveryUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={cn(
-                buttonVariants({ variant: "outline", size: "lg" }),
-                "border-white bg-transparent text-white backdrop-blur-sm hover:bg-white hover:text-black"
-              )}
-            >
-              Se faire livrer
-            </a> */}
-
             <Button size="lg" asChild>
               <Link href="/menu">Voir la carte</Link>
             </Button>
