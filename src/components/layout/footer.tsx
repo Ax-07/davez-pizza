@@ -25,7 +25,9 @@ export const Footer = () => {
           </div>
         </address>
         <p className="text-sm text-muted-foreground leading-relaxed text-center">
-          Pizzeria artisanale. Pâte maison, produits frais.
+          Pizzeria artisanale. 
+          <br />
+          Pâte fait maison et produits frais.
         </p>
         <div className="flex gap-3">
           <Link
