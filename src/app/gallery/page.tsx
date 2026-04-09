@@ -17,40 +17,40 @@ type GalleryItem = {
 // Ajouter vos photos dans /public et référencer ici
 const GALLERY_ITEMS: GalleryItem[] = [
   {
-    src: "/salle davez pizza.jpeg",
+    src: "/salle-davez-pizza.jpeg",
     alt: "La salle du restaurant Davez Pizza",
     span: "wide",
   },
   {
-    src: "/salle davez pizza.jpeg",
+    src: "/salle-davez-pizza2.jpg",
     alt: "Une pizza Margherita fraîchement sortie du four",
   },
   {
-    src: "/salle davez pizza.jpeg",
+    src: "/devanture-davez-pizza.jpeg",
     alt: "La Davez — notre pizza signature",
   },
   {
-    src: "/salle davez pizza.jpeg",
-    alt: "Notre four à bois",
+    src: "/salle-davez-pizza.jpeg",
+    alt: "La salle du restaurant Davez Pizza",
     span: "wide",
   },
   {
-    src: "/salle davez pizza.jpeg",
-    alt: "Préparation de la pâte maison",
+    src: "/salle-davez-pizza2.jpg",
+    alt: "Une pizza Margherita fraîchement sortie du four",
   },
   {
-    src: "/salle davez pizza.jpeg",
-    alt: "Ambiance en terrasse",
+    src: "/devanture_davez_pizza.jpeg",
+    alt: "La Davez — notre pizza signature",
   },
 ];
 
 export default function GalleryPage() {
   return (
-    <Main className="block py-0">
+    <Main className="block py-20">
       <section className="bg-muted/40 py-20 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
-            Galerie
+            Galerie photos
           </h1>
           <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
             Un avant-goût de l&apos;expérience Davez Pizza — en images.
