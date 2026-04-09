@@ -2,7 +2,7 @@
 
 import { Star } from "lucide-react";
 import { m } from "motion/react";
-import type { GoogleReview } from "@/app/api/reviews/route";
+import type { GoogleReview } from "@/lib/reviews";
 
 function StarRating({ rating }: { rating: number }) {
   return (

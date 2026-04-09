@@ -1,5 +1,5 @@
 import { Section, SectionDescription, SectionTitle } from "../layout/section";
-import type { GoogleReview } from "@/app/api/reviews/route";
+import { getLatestFiveStarReviews, type GoogleReview } from "@/lib/reviews";
 import { ReviewsList } from "./reviews-list";
 
 const FALLBACK_REVIEWS: GoogleReview[] = [
@@ -28,19 +28,7 @@ const FALLBACK_REVIEWS: GoogleReview[] = [
 
 async function getReviews(): Promise<GoogleReview[]> {
   try {
-    const baseUrl =
-      process.env.NEXT_PUBLIC_BASE_URL ??
-      (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
-
-    const res = await fetch(`${baseUrl}/api/reviews`, {
-      next: { revalidate: 86400 },
-    });
-
-    if (!res.ok) return FALLBACK_REVIEWS;
-
-    const data = (await res.json()) as GoogleReview[] | { error: string };
-    if (!Array.isArray(data)) return FALLBACK_REVIEWS;
-
+    const data = await getLatestFiveStarReviews();
     return data.length > 0 ? data : FALLBACK_REVIEWS;
   } catch {
     return FALLBACK_REVIEWS;
