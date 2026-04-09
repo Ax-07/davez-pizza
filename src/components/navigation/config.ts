@@ -3,6 +3,14 @@ export const navigation_pages = {
         name: "Carte",
         href: "/menu"
     },
+    // gallery: {
+    //     name: "Galerie",
+    //     href: "/gallery"
+    // },
+    // contact: {
+    //     name: "Contact",
+    //     href: "/contact"
+    // },
 }
 
 export interface NavigationPage {
