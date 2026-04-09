@@ -18,6 +18,7 @@ export const BUSINESS = {
     },
     mapsEmbedUrl:
         "https://maps.google.com/maps?width=100%&height=100%&hl=fr&q=Davez+Pizza,+1332+Rte+de+Lyon,+Davézieux&t=&z=15&ie=UTF8&iwloc=B&output=embed",
+    googlePlaceId: "ChIJHbxte4sT9UcR7N--oj0rCJk"
 } as const;
 
 export type DaySlot = { open: string; close: string } | { closed: true };
