@@ -1,0 +1,8 @@
+model Review {
+  id       String   @id
+  author   String
+  rating   Int
+  date     String
+  text     String
+  syncedAt DateTime @default(now())
+}
