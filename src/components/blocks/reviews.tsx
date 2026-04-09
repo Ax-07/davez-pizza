@@ -2,6 +2,7 @@
 
 import { Star } from "lucide-react";
 import { m } from "motion/react";
+import { Section, SectionDescription, SectionTitle } from "../layout/section";
 
 const REVIEWS = [
   {
@@ -45,15 +46,15 @@ function StarRating({ rating }: { rating: number }) {
 
 export function Reviews() {
   return (
-    <section className="w-full py-20 px-4">
+    <Section className="bg-muted/40">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug">
+          <SectionTitle>
             Ce que disent nos clients
-          </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
+          </SectionTitle>
+          <SectionDescription>
             Ils nous font confiance — voici leurs retours.
-          </p>
+          </SectionDescription>
         </div>
 
 
@@ -84,6 +85,6 @@ export function Reviews() {
             ))}
           </div>
       </div>
-    </section>
+    </Section>
   );
 }

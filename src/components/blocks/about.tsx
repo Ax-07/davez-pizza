@@ -7,6 +7,7 @@ import legumePourPizza from "@/assets/Ingrédients_pour_pizza-w520.png";
 import pizzaDegoulinante from "@/assets/pablo-pacheco-pizza-degoulinante-unsplash-w520.png";
 import Image from "next/image";
 import { m } from "motion/react";
+import { Section, SectionDescription, SectionTitle } from "../layout/section";
 
 const content = {
   tagline: "À partir du 1er mai 2026",
@@ -41,13 +42,13 @@ const content = {
 
 export const About: React.FC<React.ComponentProps<"section">> = (props) => {
   return (
-    <section className="w-full py-20 lg:py-40 2xl:py-32 px-4" {...props}>
+    <Section {...props}>
       <div className="max-w-6xl mx-auto space-y-16">
         {/* En-tete */}
         <div className="text-center space-y-4">
           <p className="text-4xl md:text-6xl font-italianno text-primary">{content.tagline}</p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">{content.title}</h2>
-          <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">{content.description}</p>
+          <SectionTitle>{content.title}</SectionTitle>
+          <SectionDescription>{content.description}</SectionDescription>
         </div>
 
         <Separator />
@@ -88,6 +89,6 @@ export const About: React.FC<React.ComponentProps<"section">> = (props) => {
             </div>
           </div>
       </div>
-    </section>
+    </Section>
   );
 };
