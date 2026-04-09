@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function LegalPage() {
   return (
-    <Main className="block">
+    <Main className="block py-32">
       <div className="max-w-3xl mx-auto w-full px-4">
         <h1 className="text-3xl md:text-4xl font-bold mb-10">Mentions légales</h1>
 
@@ -66,6 +66,26 @@ export default function LegalPage() {
             Ce site utilise uniquement des cookies techniques essentiels au bon
             fonctionnement du site (thème clair/sombre). Aucun cookie de
             traçage publicitaire n&apos;est utilisé.
+          </p>
+        </section>
+
+        <section className="mb-8">
+          <h2 className="text-xl font-semibold mb-3">Mesure d&apos;audience</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            Ce site utilise <strong>Vercel Analytics</strong>, un outil de mesure
+            d&apos;audience respectueux de la vie privée. Il collecte des données
+            agrégées et anonymisées (pages visitées, pays, navigateur) sans
+            stocker de cookie ni de données personnelles identifiables.
+            En savoir plus :{" "}
+            <a
+              href="https://vercel.com/docs/analytics/privacy-policy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4 hover:text-foreground"
+            >
+              politique de confidentialité Vercel Analytics
+            </a>
+            .
           </p>
         </section>
 
