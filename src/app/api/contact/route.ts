@@ -1,17 +1,27 @@
 import { NextResponse } from "next/server";
-import { z } from "zod";
 import nodemailer from "nodemailer";
+import { contactSchema } from "@/lib/schemas/contact";
 
 export const runtime = "nodejs";
 
-const contactSchema = z.object({
-  firstName: z.string().min(2),
-  lastName: z.string().min(2),
-  email: z.string().email(),
-  phone: z.string().optional(),
-  subject: z.enum(["reservation", "renseignement", "commande", "autre"]),
-  message: z.string().min(10),
-});
+// Rate limiter en mémoire — protège dans une même instance Lambda.
+// Pour une protection complète en production, utiliser @upstash/ratelimit + Redis.
+const ipCounts = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT = 5;
+const WINDOW_MS = 60_000;
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = ipCounts.get(ip);
+
+  if (!entry || now > entry.resetAt) {
+    ipCounts.set(ip, { count: 1, resetAt: now + WINDOW_MS });
+    return false;
+  }
+  if (entry.count >= RATE_LIMIT) return true;
+  entry.count++;
+  return false;
+}
 
 const SUBJECT_LABELS: Record<string, string> = {
   reservation: "Réservation",
@@ -21,6 +31,15 @@ const SUBJECT_LABELS: Record<string, string> = {
 };
 
 export async function POST(request: Request) {
+  const ip =
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+    request.headers.get("x-real-ip") ??
+    "unknown";
+
+  if (isRateLimited(ip)) {
+    return NextResponse.json({ error: "Trop de requêtes, veuillez réessayer dans une minute." }, { status: 429 });
+  }
+
   let body: unknown;
   try {
     body = await request.json();
