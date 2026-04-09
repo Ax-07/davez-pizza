@@ -51,7 +51,7 @@ export function getCurrentSeason(): Season {
 
 export const SCHEDULE: Record<Season, BusinessHour[]> = {
     winter: [
-        { day: "Lundi",     morning: { closed: true },                  evening: { open: "18h00", close: "22h00" } },
+        { day: "Lundi",     morning: { closed: true },                  evening: { closed: true } },
         { day: "Mardi",     morning: { open: "11h30", close: "14h00" }, evening: { open: "18h00", close: "22h00" } },
         { day: "Mercredi",  morning: { open: "11h30", close: "14h00" }, evening: { open: "18h00", close: "22h00" } },
         { day: "Jeudi",     morning: { open: "11h30", close: "14h00" }, evening: { open: "18h00", close: "22h00" } },
@@ -66,7 +66,7 @@ export const SCHEDULE: Record<Season, BusinessHour[]> = {
         { day: "Jeudi",     morning: { open: "11h30", close: "14h00" }, evening: { open: "18h30", close: "22h00" } },
         { day: "Vendredi",  morning: { open: "11h30", close: "14h00" }, evening: { open: "18h30", close: "22h00" } },
         { day: "Samedi",    morning: { open: "11h30", close: "14h00" }, evening: { open: "18h30", close: "22h30" } },
-        { day: "Dimanche",  morning: { open: "11h30", close: "14h00" }, evening: { open: "18h30", close: "22h00" } },
+        { day: "Dimanche",  morning: { closed: true },                  evening: { open: "18h30", close: "22h00" } },
     ],
 };
 
