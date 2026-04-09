@@ -21,6 +21,13 @@ export async function GET() {
     where: { rating: 5 },
     orderBy: { syncedAt: "desc" },
     take: 5,
+    select: {
+      id: true,
+      author: true,
+      rating: true,
+      date: true,
+      text: true,
+    },
   });
 
   if (rows.length === 0) {

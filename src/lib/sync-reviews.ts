@@ -76,6 +76,7 @@ export async function syncReviewsIfNeeded(
           text: r.text,
           date: r.relative_time_description,
         },
+        select: { id: true },
       })
     )
   );
