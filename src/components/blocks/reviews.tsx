@@ -1,7 +1,7 @@
 "use client";
 
 import { Star } from "lucide-react";
-import { LazyMotion, domAnimation, m } from "motion/react";
+import { m } from "motion/react";
 
 const REVIEWS = [
   {
@@ -17,7 +17,7 @@ const REVIEWS = [
     author: "Thomas R.",
     rating: 5,
     date: "Février 2026",
-    text: "Meilleure pizzeria de la ville sans hésitation. L'équipe est accueillante et les pizzas sont généreux. Parfait.",
+    text: "Meilleure pizzeria de la ville sans hésitation. L'équipe est accueillante et les pizzas sont généreuses. Parfait.",
     source: "TripAdvisor",
   },
   {
@@ -56,7 +56,7 @@ export function Reviews() {
           </p>
         </div>
 
-        <LazyMotion features={domAnimation}>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {REVIEWS.map((review, index) => (
               <m.article
@@ -83,7 +83,6 @@ export function Reviews() {
               </m.article>
             ))}
           </div>
-        </LazyMotion>
       </div>
     </section>
   );

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Parallax, ParallaxImage, ParallaxContent } from "@/components/ui/parallax";
-import { LazyMotion, domAnimation, m, type Variants } from "motion/react";
+import { m, type Variants } from "motion/react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -23,7 +23,7 @@ export const Hero = () => {
     >
       <ParallaxImage>
         <Image
-          src="/salle davez pizza.jpeg"
+          src="/salle-davez-pizza.jpeg"
           alt="Salle du restaurant Davez Pizza"
           fill
           priority
@@ -34,7 +34,7 @@ export const Hero = () => {
       </ParallaxImage>
 
       <ParallaxContent className="flex min-h-screen items-center justify-center px-4 pt-70">
-        <LazyMotion features={domAnimation}>
+
           <div className="flex max-w-3xl flex-col items-center text-center">
             <m.p
               className="text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl font-italianno 2xl:[-webkit-text-stroke:1px_white]"
@@ -86,7 +86,6 @@ export const Hero = () => {
               </Button>
             </m.div>
           </div>
-        </LazyMotion>
       </ParallaxContent>
     </Parallax>
   );

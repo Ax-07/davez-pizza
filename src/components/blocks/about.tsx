@@ -6,7 +6,7 @@ import imagePateFaiteMaison from "@/assets/skyler-ewing-pate_a_pizza-unsplash-w5
 import legumePourPizza from "@/assets/Ingrédients_pour_pizza-w520.png";
 import pizzaDegoulinante from "@/assets/pablo-pacheco-pizza-degoulinante-unsplash-w520.png";
 import Image from "next/image";
-import { LazyMotion, domAnimation, m } from "motion/react";
+import { m } from "motion/react";
 
 const content = {
   tagline: "À partir du 1er mai 2026",
@@ -41,12 +41,12 @@ const content = {
 
 export const About: React.FC<React.ComponentProps<"section">> = (props) => {
   return (
-    <section className="w-full py-20 px-4" {...props}>
+    <section className="w-full py-20 lg:py-40 2xl:py-32 px-4" {...props}>
       <div className="max-w-6xl mx-auto space-y-16">
         {/* En-tete */}
         <div className="text-center space-y-4">
           <p className="text-4xl md:text-6xl font-italianno text-primary">{content.tagline}</p>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">{content.title}</h1>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">{content.title}</h2>
           <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">{content.description}</p>
         </div>
 
@@ -63,8 +63,7 @@ export const About: React.FC<React.ComponentProps<"section">> = (props) => {
 
         {/* Valeurs */}
         <div className="overflow-hidden">
-          <LazyMotion features={domAnimation}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {content.values.map(({ title, description, image }, index) => {
                 const initialX = index === 0 ? -80 : index === 2 ? 80 : 0;
                 const initialY = index === 1 ? 80 : 0;
@@ -80,15 +79,14 @@ export const About: React.FC<React.ComponentProps<"section">> = (props) => {
                   >
                     <Image src={image} alt={title} className="absolute z-10 size-full object-cover" loading="lazy" width={520} height={520} sizes="(max-width: 768px) 100vw, 33vw" />
                     <div className="relative z-20 bg-background/70 p-6 rounded-lg w-full h-full flex flex-col items-center justify-center gap-4">
-                      <h2 className="text-xl font-semibold leading-snug">{title}</h2>
+                      <h3 className="text-xl font-semibold leading-snug">{title}</h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
                     </div>
                   </m.div>
                 );
               })}
             </div>
-          </LazyMotion>
-        </div>
+          </div>
       </div>
     </section>
   );
