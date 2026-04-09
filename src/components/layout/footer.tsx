@@ -31,19 +31,6 @@ export const Footer: React.FC<React.ComponentProps<"footer">> = ({ className, ..
           <br />
           Pâte faite maison et produits frais.
         </p>
-        <div className="flex flex-wrap justify-center gap-3">
-          <Link href="/menu" className={cn(buttonVariants({ variant: "default", size: "sm" }))}>
-            Voir la carte
-          </Link>
-          <Link
-            href={BUSINESS.orderUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
-          >
-            Commander en ligne
-          </Link>
-        </div>
         <div className="flex gap-3">
           <Link
             href={BUSINESS.social.instagram}
