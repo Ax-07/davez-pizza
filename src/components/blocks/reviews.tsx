@@ -1,89 +1,66 @@
-"use client";
-
-import { Star } from "lucide-react";
-import { m } from "motion/react";
 import { Section, SectionDescription, SectionTitle } from "../layout/section";
+import type { GoogleReview } from "@/app/api/reviews/route";
+import { ReviewsList } from "./reviews-list";
 
-const REVIEWS = [
+const FALLBACK_REVIEWS: GoogleReview[] = [
   {
-    id: 1,
+    id: "fallback-1",
     author: "Marie L.",
     rating: 5,
-    date: "Mars 2026",
+    date: "il y a 1 mois",
     text: "Une adresse incontournable ! La pâte est fine et croustillante, les ingrédients sont frais. La Davez est une merveille.",
-    source: "Google",
   },
   {
-    id: 2,
+    id: "fallback-2",
     author: "Thomas R.",
     rating: 5,
-    date: "Février 2026",
+    date: "il y a 2 mois",
     text: "Meilleure pizzeria de la ville sans hésitation. L'équipe est accueillante et les pizzas sont généreuses. Parfait.",
-    source: "TripAdvisor",
   },
   {
-    id: 3,
+    id: "fallback-3",
     author: "Sophie & Julien",
     rating: 5,
-    date: "Janvier 2026",
+    date: "il y a 3 mois",
     text: "On y revient chaque semaine ! La truffe et champignons est notre chouchoute. Cadre chaleureux, service rapide.",
-    source: "Google",
   },
 ];
 
-function StarRating({ rating }: { rating: number }) {
-  return (
-    <div className="flex gap-0.5" aria-label={`${rating} étoiles sur 5`}>
-      {Array.from({ length: 5 }).map((_, i) => (
-        <Star
-          key={i}
-          className={`size-4 ${i < rating ? "fill-amber-400 text-amber-400" : "text-muted"}`}
-        />
-      ))}
-    </div>
-  );
+async function getReviews(): Promise<GoogleReview[]> {
+  try {
+    const baseUrl =
+      process.env.NEXT_PUBLIC_BASE_URL ??
+      (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+
+    const res = await fetch(`${baseUrl}/api/reviews`, {
+      next: { revalidate: 86400 },
+    });
+
+    if (!res.ok) return FALLBACK_REVIEWS;
+
+    const data = (await res.json()) as GoogleReview[] | { error: string };
+    if (!Array.isArray(data)) return FALLBACK_REVIEWS;
+
+    return data.length > 0 ? data : FALLBACK_REVIEWS;
+  } catch {
+    return FALLBACK_REVIEWS;
+  }
 }
 
-export function Reviews() {
+export async function Reviews() {
+  const reviews = await getReviews();
+
   return (
     <Section className="bg-muted/40">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <SectionTitle>
-            Ce que disent nos clients
-          </SectionTitle>
+          <SectionTitle>Ce que disent nos clients</SectionTitle>
           <SectionDescription>
             Ils nous font confiance — voici leurs retours.
           </SectionDescription>
         </div>
 
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {REVIEWS.map((review, index) => (
-              <m.article
-                key={review.id}
-                className="rounded-2xl border bg-card p-6 flex flex-col gap-4 shadow-sm"
-                initial={{ opacity: 0, y: 32 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1], delay: index * 0.1 }}
-              >
-              <div className="flex items-start justify-between gap-2">
-                <div>
-                  <p className="font-semibold">{review.author}</p>
-                  <p className="text-xs text-muted-foreground">{review.date}</p>
-                </div>
-                <span className="text-xs text-muted-foreground bg-muted rounded-full px-2 py-0.5">
-                  {review.source}
-                </span>
-              </div>
-              <StarRating rating={review.rating} />
-              <blockquote className="text-sm text-muted-foreground leading-relaxed italic">
-                &ldquo;{review.text}&rdquo;
-              </blockquote>
-              </m.article>
-            ))}
-          </div>
+        <ReviewsList reviews={reviews} />
       </div>
     </Section>
   );
