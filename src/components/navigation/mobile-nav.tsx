@@ -28,9 +28,9 @@ export const MobileNav: React.FC<React.ComponentProps<"nav">> = () => {
       <SheetContent className="overflow-y-auto pt-24 z-100 px-6" aria-describedby="mobile-menu">
         <SheetHeader>
           <SheetTitle>
-            <Link href="/" onClick={handleClose} className="flex">
+            <div onClick={handleClose} className="flex">
                 <Logo className="mx-auto"/>
-            </Link>
+            </div>
           </SheetTitle>
 
         </SheetHeader>

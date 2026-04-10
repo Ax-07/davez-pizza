@@ -7,6 +7,7 @@ import { Navigation } from "@/components/navigation";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "../ui/theme-toggle";
 import { m } from "motion/react";
+import { DesktopNav } from "../navigation/desktop-nav";
 
 export const Header: React.FC<React.ComponentProps<"header">> = ({ className, ...props }) => {
   const pathname = usePathname();
@@ -35,7 +36,8 @@ export const Header: React.FC<React.ComponentProps<"header">> = ({ className, ..
       {...props}
     >
       <ThemeToggle />
-      <Navigation />
+      {/* <Navigation /> */}
+      {/* <DesktopNav /> */}
       <m.div
         className={cn("absolute left-1/2 -translate-x-1/2", active ? "top-2" : "top-5")}
         initial={{ opacity: 0, y: -20 }}

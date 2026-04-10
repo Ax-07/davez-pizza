@@ -75,6 +75,7 @@ export const Hero = () => {
             </m.p>
 
             <m.div
+              id="hero-cta"
               className="flex flex-wrap justify-center gap-4"
               variants={fadeUp}
               initial="hidden"
