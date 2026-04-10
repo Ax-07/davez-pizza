@@ -6,7 +6,7 @@ function SlotCell({ slot }: { slot: DaySlot }) {
   if ("closed" in slot)
     return <span className="text-muted-foreground/50 italic text-xs">—</span>;
   return (
-    <span className="tabular-nums text-sm font-extralight whitespace-nowrap">
+    <span className="tabular-nums text-xs md:tex-md font-extralight whitespace-nowrap">
       {slot.open}&nbsp;–&nbsp;{slot.close}
     </span>
   );
