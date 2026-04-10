@@ -1,6 +1,7 @@
 import { Section, SectionDescription, SectionTitle } from "../layout/section";
-import { getLatestFiveStarReviews, type GoogleReview } from "@/lib/reviews";
-import { ReviewsList } from "./reviews-list";
+import { getLatestFiveStarReviews } from "@/lib/reviews/reviews";
+import { ReviewsList } from "../../lib/reviews/reviews-list";
+import { GoogleReview } from "@/lib/reviews/types";
 
 const FALLBACK_REVIEWS: GoogleReview[] = [
   {
