@@ -28,7 +28,7 @@ export const Header: React.FC<React.ComponentProps<"header">> = ({ className, ..
       className={cn(
         "fixed top-0 z-50 flex items-center justify-end w-full py-4 px-4 md:px-8 transition-all duration-1000",
         active
-          ? "backdrop-blur-lg bg-background border-b-2 border-b-primary border-border/40"
+          ? "backdrop-blur-lg bg-background border-b-2 border-b-primary"
           : "bg-transparent border-b border-transparent",
         className,
       )}
