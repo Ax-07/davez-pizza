@@ -31,7 +31,7 @@ export const StickyMenuCta = () => {
     >
       <Link
         href="/menu"
-        className={cn(buttonVariants({ size: "lg" }), "w-full rounded-none shadow-lg shadow-black/30")}
+        className={cn(buttonVariants({ size: "lg" }), "w-full p-6 text-lg rounded-none shadow-lg shadow-black/30")}
       >
         Voir la carte
       </Link>
