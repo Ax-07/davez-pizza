@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Parallax, ParallaxImage, ParallaxContent } from "@/components/ui/parallax";
 import { m, type Variants } from "motion/react";
+import { Section } from "../layout/section";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -15,26 +16,23 @@ const fadeUp: Variants = {
   }),
 };
 
-export const Hero = () => {
+export const Hero: React.FC<React.ComponentProps<"section">> = (props) => {
   return (
-    <Parallax
-      size="full"
-      className="w-full"
-    >
-      <ParallaxImage>
-        <Image
-          src="/salle-davez-pizza.jpeg"
-          alt="Salle du restaurant Davez Pizza"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-background/55" />
-      </ParallaxImage>
+    <Section id="hero" className="py-0!" {...props}>
+      <Parallax size="full" className="w-full">
+        <ParallaxImage>
+          <Image
+            src="/salle-davez-pizza.jpeg"
+            alt="Salle du restaurant Davez Pizza"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-background/55" />
+        </ParallaxImage>
 
-      <ParallaxContent className="flex min-h-screen items-center justify-center px-4 pt-70">
-
+        <ParallaxContent className="flex min-h-screen items-center justify-center px-4 pt-70">
           <div className="flex max-w-3xl flex-col items-center text-center">
             <m.p
               className="text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl font-italianno 2xl:[-webkit-text-stroke:1px_white]"
@@ -87,7 +85,8 @@ export const Hero = () => {
               </Button>
             </m.div>
           </div>
-      </ParallaxContent>
-    </Parallax>
+        </ParallaxContent>
+      </Parallax>
+    </Section>
   );
 };

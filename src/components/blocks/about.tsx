@@ -42,7 +42,7 @@ const content = {
 
 export const About: React.FC<React.ComponentProps<"section">> = (props) => {
   return (
-    <Section {...props}>
+    <Section id="about" {...props}>
       <div className="max-w-6xl mx-auto space-y-16">
         {/* En-tete */}
         <div className="text-center space-y-4">

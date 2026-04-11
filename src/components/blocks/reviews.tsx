@@ -36,11 +36,11 @@ async function getReviews(): Promise<GoogleReview[]> {
   }
 }
 
-export async function Reviews() {
+export const Reviews: React.FC<React.ComponentProps<"section">> = async (props) => {
   const reviews = await getReviews();
 
   return (
-    <Section className="bg-muted/40">
+    <Section id="reviews" className="bg-muted/40" {...props}>
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <SectionTitle>Ce que disent nos clients</SectionTitle>
