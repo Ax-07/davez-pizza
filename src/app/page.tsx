@@ -11,7 +11,7 @@ export default function Home() {
     <main>
       <Hero />
       <StickyMenuCta />
-      <About />
+      <About/>
       {/* <Specialties /> */}
       {/* <PromoBanner /> */}
       <HoursAddress />
