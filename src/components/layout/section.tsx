@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
-export const Section: React.FC<React.ComponentProps<"section">> = ({ className, ...props }) => {
-  return <section className={cn("w-full py-20 lg:py-40 2xl:py-32 px-4", className)} {...props} />;
+export const Section: React.FC<React.ComponentProps<"section">> = ({ id, className, ...props }) => {
+  return <section id={id} className={cn("w-full py-20 lg:py-40 2xl:py-32 px-4", className)} {...props} />;
 };
 
 export const SectionTitle: React.FC<React.ComponentProps<"h2">> = ({ className, ...props }) => {

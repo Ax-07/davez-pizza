@@ -27,7 +27,7 @@ export const Header: React.FC<React.ComponentProps<"header">> = ({ className, ..
   return (
     <header
       className={cn(
-        "fixed top-0 z-50 flex items-center justify-end w-full py-4 px-4 md:px-8 transition-all duration-1000",
+        "fixed top-0 z-50 flex items-center justify-end w-full h-17.5 lg:h-25 px-4 md:px-8 transition-all duration-1000",
         active
           ? "backdrop-blur-lg bg-background border-b-2 border-b-primary"
           : "bg-transparent border-b border-transparent",
@@ -35,7 +35,7 @@ export const Header: React.FC<React.ComponentProps<"header">> = ({ className, ..
       )}
       {...props}
     >
-      <ThemeToggle />
+      {/* <ThemeToggle /> */}
       {/* <Navigation /> */}
       {/* <DesktopNav /> */}
       <m.div
