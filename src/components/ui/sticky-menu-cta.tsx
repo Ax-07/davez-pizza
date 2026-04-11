@@ -22,19 +22,42 @@ export const StickyMenuCta = () => {
   }, []);
 
   return (
-    <div
-      aria-hidden={!visible}
-      className={cn(
-        "fixed bottom-0 left-1/2 -translate-x-1/2 w-full z-50 md:hidden transition-all duration-300",
-        visible ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"
-      )}
-    >
-      <Link
-        href="/menu"
-        className={cn(buttonVariants({ size: "lg" }), "w-full p-6 text-lg rounded-none shadow-lg shadow-black/30")}
+    <>
+      {/* Mobile : barre pleine largeur en bas */}
+      <button
+        aria-hidden={!visible}
+        className={cn(
+          "fixed bottom-0 left-1/2 -translate-x-1/2 w-full z-50 md:hidden transition-all duration-300",
+          visible ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"
+        )}
       >
-        Voir la carte
-      </Link>
-    </div>
+        <Link
+          href="/menu"
+          className={cn(buttonVariants({ size: "lg" }), "w-full p-2 text-lg rounded-none shadow-lg shadow-black/30")}
+        >
+          Voir la carte
+        </Link>
+      </button>
+
+      {/* Desktop : onglet vertical ancré au centre droit */}
+      <button
+        aria-hidden={!visible}
+        className={cn(
+          "fixed right-0 top-1/2 -translate-y-1/2 z-50 hidden md:flex transition-all duration-300",
+          visible ? "opacity-100 translate-x-0 pointer-events-auto" : "opacity-0 translate-x-4 pointer-events-none"
+        )}
+      >
+        <Link
+          href="/menu"
+          className={cn(
+            buttonVariants({ size: "default" }),
+            "rotate-180 h-auto p-6 rounded-none rounded-r-lg shadow-lg shadow-black/30 text-sm tracking-widest uppercase"
+          )}
+          style={{ writingMode: "vertical-rl" }}
+        >
+          Voir la carte
+        </Link>
+      </button>
+    </>
   );
 };
