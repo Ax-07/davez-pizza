@@ -115,7 +115,7 @@ export const menuCategories: MenuCategory[] = [
   {
     id: "pizzas-base-creme",
     name: "Pizzas base Crème",
-    emoji: "🍕",
+    emoji: "🥛",
     items: [
       {
         id: "chevre-miel",
@@ -246,23 +246,23 @@ export const menuCategories: MenuCategory[] = [
     emoji: "🍮",
     items: [
       {
-        id: "tiramisu",
-        name: "Tiramisu maison",
-        description: "Recette traditionnelle, mascarpone, café, cacao",
-        price: 7,
+        id: "fondant-chocolat",
+        name: "Fondant au chocolat",
+        description: "Cœur coulant, boule de glace vanille",
+        price: 4.5,
       },
       {
         id: "panna-cotta",
         name: "Panna Cotta",
         description: "Crème vanille, coulis de fruits rouges",
-        price: 6,
+        price: 4.5,
       },
       {
-        id: "fondant-chocolat",
-        name: "Fondant au chocolat",
-        description: "Cœur coulant, boule de glace vanille",
-        price: 8,
-      },
+        id: "creme-brulee",
+        name: "Crème brûlée",
+        description: "Crème vanille, caramel croquant",
+        price: 4.5,
+      }
     ],
   },
   {
@@ -271,34 +271,40 @@ export const menuCategories: MenuCategory[] = [
     emoji: "🥤",
     items: [
       {
-        id: "eau",
-        name: "Eau plate ou pétillante",
+        id: "eau-plate",
+        name: "Eau plate",
         description: "50cl",
-        price: 3,
+        price: 1.5,
+      },
+      {
+        id: "eau-gazeuse",
+        name: "Eau gazeuse",
+        description: "50cl",
+        price: 2,
       },
       {
         id: "sodas",
         name: "Sodas",
         description: "Coca-Cola, Orangina, Limonade — 33cl",
-        price: 4,
+        price: 2,
       },
       {
         id: "biere",
         name: "Bière artisanale locale",
         description: "33cl, sélection de saison",
-        price: 6,
+        price: 4.5,
       },
       {
         id: "vin-verre",
-        name: "Vin rouge / blanc / rosé",
-        description: "Verre 15cl — sélection du patron",
-        price: 5,
+        name: "Verre de vin",
+        description: "15cl — rouge / blanc / rosé — sélection du patron",
+        price: 2,
       },
       {
-        id: "vin-bouteille",
-        name: "Carafe de vin",
-        description: "50cl — sélection du patron",
-        price: 14,
+        id: "vin-pichet",
+        name: "Pichet de vin",
+        description: "50cl — rouge / blanc / rosé — sélection du patron",
+        price: 7,
       },
       {
         id: "cafe",
